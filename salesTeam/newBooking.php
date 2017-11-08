@@ -31,7 +31,7 @@
               if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['Name'])){
                 echo "
                 <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                  <strong>Sucess !</strong> New user added successfully.
+                  <strong>Sucess !</strong> New booking entered.
                   <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                   </button>
