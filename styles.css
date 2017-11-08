@@ -1,0 +1,447 @@
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.row {
+  margin: 0;
+}
+
+.card {
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+[class ^= "col-lg"] {
+  padding: 0;
+}
+
+a, a:focus, a:active, a:hover {
+  text-decoration: none;
+  color:inherit;
+}
+
+table thead tr th,
+table tbody tr td {
+  text-align: center;
+}
+
+.header-box {
+  position: relative;
+  height: 15%;
+}
+
+.header-box .row {
+  height: 100%;
+}
+
+#header-container {
+  /*z-index: -1;*/
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  background-color: #2d68ff;
+}
+
+.header-wrapper {
+  background-color: #2d68ff;
+  border: 1px solid rgba(0 ,0 ,0, 0.3);
+  border-right: 0px;
+  text-align: center;
+}
+
+.header-wrapper div {
+  height: 100%;
+}
+
+#header-container .row .col-lg-1 {
+  max-width: 3.333333333333%;
+}
+
+#header-container .row .col-lg-11 {
+  max-width: 96.6666666666667%;
+  flex: 96.6666666666667%;
+  height: 100%;
+}
+
+#left-side-wrapper{
+  border: 0;
+  height:100%;
+  background-color: #434343;
+}
+
+#right-side-wrapper {
+  border:0;
+}
+
+#right-side-wrapper>div {
+  padding: 10px;
+}
+
+
+#dashboard {
+  height: 100%;
+}
+
+#dashboard .row,
+#dashboard .row [class ^= "col-lg"] {
+  min-height: 100%;
+}
+
+#dashboard .row {
+  width: 100%;
+}
+
+#dashboard .row [class="col-lg-1"]:first-child {
+    background-color: #434343;
+    max-width: 3.333333333%;
+}
+
+#options-wrapper,
+#side-menu-container {
+  width: 100%;
+  height: 100%;
+}
+
+#side-menu {
+  display: grid;
+  padding: 3em 0;
+  margin: 0;
+  list-style: none;
+}
+
+.side-menu-item {
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.side-menu-item.active {
+  background-color: #2d68ff;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.side-menu-item a {
+  display: block;
+  padding: 1em 0.75em;
+}
+
+#dashboard .row [class^="col-lg"]:nth-child(2) {
+  background-color: #f8f8f8;
+  max-width: 96.666666667%;
+  flex-basis: 96.666666667%;
+}
+
+.cards-wrapper {
+  display: grid;
+  padding: 2em;
+  grid-row-gap: 20px;
+}
+
+.cards-wrapper .card-body {
+  padding: 0.5em 1.25em;
+}
+
+.summary-table,
+.summary-table thead,
+.summary-table thead th {
+  border: 0 !important;
+  border-color: white !important;
+}
+
+.summary-table thead tr{
+  font-size: 0.75rem;
+}
+
+.summary-table tbody td {
+  font-size: 0.75em;
+  font-weight: 600;
+}
+/*------------SALESMAN_DASHBOARD---------------*/
+
+#salesman-wrapper .cards-wrapper .cards-container{
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+/*#salesman-wrapper .card:hover {
+  border: 0;
+  border-radius: 0.5px;
+  border-top-width: 2.5px !important;
+  border-style: solid !important;
+  transition: all 0.2s ease;
+}
+
+#salesman-wrapper .cards-wrapper .card:first-child {
+  border-color: rgb(33,150,243) !important;
+  transition: all 0.2s ease;
+}
+
+#salesman-wrapper .cards-wrapper .card:nth-child(2) {
+  border-color: rgb(255,193,7);
+  transition: all 0.2s ease;
+}*/
+
+.pagination {
+  justify-content: center;
+}
+
+#total-sales tbody tr th {
+  font-size: 0.8em;
+  width: 10%;
+}
+
+#total-sales thead tr th{
+  background-color: #2d68ff;
+  color: white;
+  text-transform: uppercase;
+}
+/*-----------SORTED SUMMARY-------------*/
+
+#sorted-sum-wrapper {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  /*grid-template-rows: repeat(2, 2fr);*/
+  grid-gap:20px;
+}
+
+#salesman-wrapper .card-body{
+  overflow-x: hidden;
+}
+
+#transaction-sum tbody tr td:first-child {
+  width: 30%;
+}
+
+#transaction-sum tbody tr td {
+  font-weight:600;
+}
+
+#salesman-sum {
+  overflow-x: hidden;
+}
+
+#transaction-sum thead th,
+#salesman-sum thead th,
+#salesman-wise thead th,
+#team-wise thead th {
+  text-transform: uppercase;
+  background-color: rgb(25,118,210);
+  color: white;
+}
+
+#salesman-sum thead th{
+  padding-top: 10px;
+}
+
+#transaction-sum tbody tr:last-child td,
+#salesman-sum tbody tr:last-child td{
+  background-color: rgb(102,187,106);
+  color: white;
+  font-size: 0.85em;
+}
+
+#salesman-wise tbody tr td:last-child,
+#team-wise tbody tr td:last-child {
+  color:#fff;
+  background-color: rgb(102,187,106);
+  font-size: 0.85em;
+}
+
+.max {
+  background-color: rgb(233,30,99);
+  color: white;
+}
+
+#calender-filter-wrapper {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+/*-----------SETTINGS-----------*/
+
+#settings-dashboard,
+#settings-dashboard .cards-wrapper {
+  height: 85%;
+  width: 100%;
+}
+
+#settings-dashboard .cards-wrapper{
+  display: block;
+  height: 100%;
+}
+
+.nav-tabs {
+  border:0;
+}
+
+.nav-tabs .nav-item {
+  margin-bottom: 0;
+}
+
+.btn-primary {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+#settings-dashboard .tab-content {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
+#settings-dashboard .tab-pane {
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.custom-input {
+  width: 90%;
+  float: right;
+}
+
+#newUser {
+  padding: 5em;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  border:0;
+  box-shadow: 0 -1px 2px rgba(0,0,0,0.2);
+}
+
+.nav-link.active {
+  border-top: 3px solid rgb(25,118,210) !important;
+}
+
+#user-delete thead tr th{
+  padding:0.5em;
+  font-size: 1.15em;
+  text-transform: uppercase;
+  background-color: rgb(25,118,210);
+  color: white;
+}
+
+#user-delete tbody tr td {
+  font-size: 0.9em;
+}
+
+#user-delete tbody form .btn-danger {
+  font-weight: 700;
+  font-size: 0.85em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-radius: 2px;
+}
+/*-----------LOGIN-------------*/
+
+.login-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.left-side,
+.right-side {
+  height: 100%;
+}
+
+.left-side {
+  background-color: rgba(57, 193, 251, 0.64);
+}
+
+.right-side {
+  background-color: #efefef;
+}
+
+.login-wrapper{
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
+
+.login-wrapper>.card {
+  align-self: center;
+  width: 60%;
+  margin: 0 auto;
+  height: 80%;
+}
+
+.login-wrapper .card-body {
+  display: grid;
+  grid-template-rows: 0.2fr 0.5fr 0.5fr;
+  padding: 3em 1.5em;
+}
+
+.login-wrapper .card-body form {
+  display: grid;
+  grid-template-rows: 0.75fr 0.75fr;
+  grid-row-gap: 1em;
+}
+
+.login-wrapper .card-body form .form-group {
+  position: relative;
+}
+
+.login-wrapper .card-body form .form-group label {
+  position: absolute;
+  top: 15%;
+  left: 3.3%;
+  color: rgba(115, 115, 115, 0.26);
+  cursor: text;
+  transition: 0.3s all ease;
+}
+
+.login-wrapper .card-body form .form-group .form-control {
+  border: 0;
+  border-bottom: 1.25px solid #b4b4b4;
+  border-radius: 0;
+  font-size: 0.85em;
+  transition: 0.3s all ease;
+}
+
+.login-wrapper .card-body form .form-group .form-control:focus ~ label {
+  top: 0;
+  font-size: 0.75em;
+  transform: translateY(-20px);
+  color: rgb(33, 135, 255);
+}
+
+.login-wrapper .card-body form .form-group .form-control:focus {
+  border-bottom: 1.5px solid rgb(33, 135, 255);
+  transition: 0.3s all ease;
+}
+
+.login-wrapper .card-body form button.btn {
+  width: 25%;
+  border-radius: 3.5px;
+  color: white;
+  background-color: rgb(33, 135, 255);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  justify-self: end;
+  transition: 0.3s all ease
+}
+
+.login-wrapper .card-body form button.btn:active {
+  box-shadow:0px 20px 30px rgba(0, 0, 0, 0.1), 10px 20px 30px rgba(0, 0, 0, 0.1), -10px 20px 30px rgba(0, 0, 0, 0.1);
+  background-color: rgb(30, 101, 184);
+  transition: 0.3s all ease
+}
+
+#signUp-container {
+  float: left !important;
+  display: inline;
+}
