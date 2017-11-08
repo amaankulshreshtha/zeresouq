@@ -10,13 +10,15 @@
       </div>
       <div class="col-lg-11">
         <div id="right-side-wrapper" class="header-wrapper">
-          <div class="clearfix">
-            <div class="float-left">
-              <h1>Dashboard</h1>
+          <div style="display:flex; justify-content: space-between">
+            <div>
+              <h2 style="color: white;">Welcome !</h2>
             </div>
-            <div class="float-right">
-              <a href="../logout.php">Logout <?php echo $_SESSION['user']; ?></a>
+            <div id="timestamp" style="color: #BBDEFB;font-weight: 600;font-size: 1.2em;transform: translate3d(-15%,-25%,0);"></div>
+            <div>
+              <a href="../logout.php"><button class="btn btn-primary">LOGOUT</button></a>
             </div>
+            <!-- <hr style="position:absolute; top:25%; left:8%; width:80px; border-color:white; border-width:3px"/> -->
           </div>
         </div>
       </div>

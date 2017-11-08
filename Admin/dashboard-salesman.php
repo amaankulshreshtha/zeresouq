@@ -23,7 +23,7 @@ $term = $year."-".$month."-%";
           <div id="options-wrapper">
             <div id="side-menu-container">
               <ul id="side-menu">
-                <li class="side-menu-item prompt"><a href="dashboard-salesSum.php"><i class="fa fa-th-list" aria-hidden="true"></i></a></li>
+                <li class="side-menu-item prompt"><a href="dashboard-salesSum.php"><i class="fa fa-database" aria-hidden="true"></i></a></li>
                 <li class="side-menu-item prompt active"><a href="#"><i class="fa fa-users" aria-hidden="true"></i></a></li>
                 <li class="side-menu-item prompt"><a href="settings.php"><i class="fa fa-cogs" aria-hidden="true"></i></a></li>
               </ul>
@@ -36,8 +36,12 @@ $term = $year."-".$month."-%";
               <div class="cards-container">
                 <div class="card" style="grid-column:1/3" id="calender-filter-wrapper">
                   <div class="card-body" id="calender-filter">
-                    <form action='dashboard-salesman.php' method='GET'>
+                    <h5>Search for records</h5>
+                    <hr />
+                    <br />
+                    <form action='dashboard-salesman.php' method='GET' style="display:flex; justify-content: space-between">
                       <select name='year'>
+                        <option selected disabled value>-- select a year --</option>
                         <option value='%'> All </option>
                         <?php
                          $ny = date('Y');
@@ -47,20 +51,21 @@ $term = $year."-".$month."-%";
                          }
                         ?>
                       </select>
-                      <select name='month'>
+                      <select name='month' style="text-align:center">
+                        <option selected disabled value>-- select a month --</option>
                         <option value='%'> All </option>
-                        <option value='01'> Jan </option>
-                        <option value='02'> Feb </option>
-                        <option value='03'> Mar </option>
-                        <option value='04'> Apr </option>
+                        <option value='01'> January </option>
+                        <option value='02'> February </option>
+                        <option value='03'> March </option>
+                        <option value='04'> April </option>
                         <option value='05'> May </option>
-                        <option value='06'> Jun </option>
-                        <option value='07'> Jul </option>
-                        <option value='08'> Aug </option>
-                        <option value='09'> Sep </option>
-                        <option value='10'> Oct </option>
-                        <option value='11'> Nov </option>
-                        <option value='12'> Dec </option>
+                        <option value='06'> June </option>
+                        <option value='07'> July </option>
+                        <option value='08'> August </option>
+                        <option value='09'> September </option>
+                        <option value='10'> October </option>
+                        <option value='11'> November </option>
+                        <option value='12'> December </option>
                       </select>
                     <button class="btn btn-primary" type="submit" name="submit">Search</button>
                   </form>
@@ -68,6 +73,10 @@ $term = $year."-".$month."-%";
                 </div>
                 <div class="card">
                   <div class="card-body">
+
+                    <h4>ZQ Daily Sales Summary</h4>
+                    <hr class="header-hr"/>
+
                     <table class="summary-table table" id="transaction-sum">
                       <thead>
                         <tr>
@@ -104,6 +113,8 @@ $term = $year."-".$month."-%";
                 </div>
                 <div class="card">
                   <div class="card-body" style='overflow-x: scroll;'>
+                    <h4>Sales Value</h4>
+                    <hr class="header-hr"/>
                     <table class="summary-table table" id="salesman-sum">
                       <tbody>
                         <?php
@@ -155,11 +166,19 @@ $term = $year."-".$month."-%";
                           echo "</tr>";
                         }
 
-                        $totalMonth = mysqli_query($db, "SELECT SUM(SalesAed) from booking where BDate LIKE '$term' group by Sid");
                         echo "<tr>";
-                          while($rows=mysqli_fetch_array($totalMonth)){
-                            // var_dump($rows);
-                            echo "<td>".$rows['SUM(SalesAed)']."</td>";
+                        $res2=mysqli_query($db,"SELECT DISTINCT(Sid) from salesman");
+                        while($row2=mysqli_fetch_array($res2)){
+                          $sid = $row2['Sid'];
+
+                            $totalMonth = mysqli_query($db, "SELECT Sid, SUM(SalesAed) from booking where BDate LIKE '$term' && Sid = '$sid'");
+                              while($rows=mysqli_fetch_array($totalMonth)){
+                                $number = $rows['SUM(SalesAed)'];
+                                if($number > 0)
+                                echo "<td>$number</td>";
+                                else if($number == NULL)
+                                echo "<td>0</td>";
+                              }
                           }
                         echo "</tr>";
                         ?>
@@ -173,6 +192,8 @@ $term = $year."-".$month."-%";
                   <div id="sorted-sum-wrapper">
                     <div class="card">
                       <div class="card-body">
+                        <h4>ZQ Sales Summary: Salesman-wise</h4>
+                        <hr class="header-hr"/>
                         <table class="table summary-table" id="salesman-wise">
                           <thead>
                             <tr>
@@ -213,6 +234,8 @@ $term = $year."-".$month."-%";
                     </div>
                     <div class="card">
                       <div class="card-body">
+                        <h4>ZQ Sales Summary: Team-wise</h4>
+                        <hr class="header-hr"/>
                         <table class="table summary-table" id="team-wise">
                           <thead>
                             <tr>
@@ -224,23 +247,50 @@ $term = $year."-".$month."-%";
                           <tbody>
                             <?php
 
-                              $T_query = mysqli_query($db,"SELECT COUNT(*), COUNT(b.SalesAed), Station, SUM(b.SalesAed) FROM booking b, salesman s WHERE b.Sid=s.Sid AND BDate LIKE '$term' GROUP BY Station");
+                            // $T_query = mysqli_query($db,"SELECT COUNT(*), COUNT(b.SalesAed), Station, SUM(b.SalesAed) FROM booking b, salesman s WHERE b.Sid=s.Sid AND BDate LIKE '$term' GROUP BY Station");
+                              $T_query = mysqli_query($db,"SELECT * FROM booking b, salesman s WHERE b.Sid=s.Sid AND BDate LIKE '$term'");
 
+                              $Istation = $Icount = $Isum = $Ustation = $Ucount = $Usum = 0;
                               while($rows=mysqli_fetch_array($T_query)){
-                                //var_dump($rows);   scwoll to the 1010
-                                echo "
-                                  <tr>
-                                    <td>".$rows['Station']."</td>";
-                                    if($rows['COUNT(*)']==0){
-                                      $rows['COUNT(b.SalesAed)']=0;
-                                      $rows['SUM(b.SalesAed)']=0;
-                                    }
-                                    echo "
-                                    <td>".$rows['COUNT(b.SalesAed)']."</td>
-                                    <td>".$rows['SUM(b.SalesAed)']."</td>
-                                  </tr>
-                                ";
-                              }
+
+                                if($rows['Station']=='IND'){
+                                  $Istation = $rows['Station'];
+                                  $Icount = $Icount + 1;
+                                  $Isum = $Isum + $rows['SalesAed'];}
+                                if($rows['Station']=='UAE'){
+                                  $Ustation = $rows['Station'];
+                                  $Ucount = $Ucount + 1;
+                                  $Usum = $Usum + $rows['SalesAed'];}
+
+                                }
+
+                                echo "<tr>
+                                        <td>IND</td>
+                                        <td>$Icount</td>
+                                        <td>$Isum</td>
+                                      </tr>
+                                      <tr>
+                                          <td>UAE</td>
+                                          <td>$Ucount</td>
+                                          <td>$Usum</td>
+                                        </tr>"
+
+
+
+
+                                // echo "
+                                //   <tr>
+                                //     <td>".$rows['Station']."</td>";
+                                //     if($rows['COUNT(*)']==0){
+                                //       $rows['COUNT(b.SalesAed)']=0;
+                                //       $rows['SUM(b.SalesAed)']=0;
+                                //     }
+                                //     echo "
+                                //     <td>".$rows['COUNT(b.SalesAed)']."</td>
+                                //     <td>".$rows['SUM(b.SalesAed)']."</td>
+                                //   </tr>
+                                // ";
+
                             ?>
                           </tbody>
                         </table>

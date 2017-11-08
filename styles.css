@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+
 html,
 body {
   height: 100%;
@@ -6,6 +8,7 @@ body {
 
 body {
   font-family: 'Raleway', sans-serif;
+  /*font-family: 'Maven Pro', sans-serif;*/
 }
 
 .container-fluid {
@@ -85,12 +88,20 @@ table tbody tr td {
 }
 
 #right-side-wrapper>div {
-  padding: 10px;
+  padding: 35px 100px;
+  position: relative;
 }
 
+#right-side-wrapper a button {
+  font-size: 0.9em;
+  background-color: #fff;
+  font-weight: 600;
+  border:0;
+  color:#2d68ff;
+}
 
 #dashboard {
-  height: 100%;
+  min-height: 100%;
 }
 
 #dashboard .row,
@@ -150,7 +161,7 @@ table tbody tr td {
 }
 
 .cards-wrapper .card-body {
-  padding: 0.5em 1.25em;
+  padding: 1.5em 1.25em;
 }
 
 .summary-table,
@@ -199,6 +210,15 @@ table tbody tr td {
   justify-content: center;
 }
 
+.page-link {
+  color: #2d68ff;
+}
+
+.page-item.active .page-link {
+  background-color: #2d68ff;
+  border-color: #2d68ff;
+}
+
 #total-sales tbody tr th {
   font-size: 0.8em;
   width: 10%;
@@ -210,6 +230,11 @@ table tbody tr td {
   text-transform: uppercase;
 }
 /*-----------SORTED SUMMARY-------------*/
+
+.header-hr {
+  border-color: rgb(25, 118, 210);
+  border-width: 3px;
+}
 
 #sorted-sum-wrapper {
   display: grid;
@@ -244,7 +269,7 @@ table tbody tr td {
 }
 
 #salesman-sum thead th{
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
 #transaction-sum tbody tr:last-child td,
@@ -268,6 +293,7 @@ table tbody tr td {
 
 #calender-filter-wrapper {
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  height: 170px;
 }
 /*-----------SETTINGS-----------*/
 
@@ -311,8 +337,12 @@ table tbody tr td {
   width: 90%;
   float: right;
 }
+.custom-input2 {
+  width: 85%;
+  float: right;
+}
 
-#newUser {
+.newEntry {
   padding: 5em;
 }
 
@@ -412,7 +442,8 @@ table tbody tr td {
   transition: 0.3s all ease;
 }
 
-.login-wrapper .card-body form .form-group .form-control:focus ~ label {
+.login-wrapper .card-body form .form-group input:focus ~ label,
+.login-wrapper .card-body form .form-group input:valid ~ label {
   top: 0;
   font-size: 0.75em;
   transform: translateY(-20px);

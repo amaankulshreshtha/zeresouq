@@ -11,31 +11,45 @@
 
 <div class="container-fluid" id="dashboard">
   <div class="row">
-    <div class="col-lg-2">
+    <div class="col-lg-1">
       <div id="options-wrapper">
         <div id="side-menu-container">
           <ul id="side-menu">
-            <a href="salesSum.php"><li class="side-menu-item prompt active">Sales Summary</li></a>
-            <a href="#"><li class="side-menu-item prompt">New Booking</li></a>
+            <li class="side-menu-item prompt"><a href="salesSum.php"><i class="fa fa-th-list" aria-hidden="true"></i></a></li>
+            <li class="side-menu-item prompt active"><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
             <!-- <a><li class="side-menu-item prompt">lorem ipsum</li></a> -->
           </ul>
         </div>
       </div>
     </div>
-    <div class="col-lg-10">
-      <div class="dashboard-container" id="salesSum-wrapper">
+    <div class="col-lg-11">
+      <div class="dashboard-container" id="salesSum-wrapper" style="min-height: 725px;">
         <div class="cards-wrapper">
-          <div class="card">
+          <div class="card" style="min-height: 650px; max-height: 690px;">
             <div class="card-body">
-              <h3>Add a New Booking</h3>
-              <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" id="newBooking">
-                <div class="form-group"><label>Name: </label><input name="Name" accept-charset="UTF-8"/></div>
-                <div class="form-group"><label>FbName: </label><input name="FbName" accept-charset="UTF-8"/></div>
-                <div class="form-group"><label>Email: </label><input name="CEmail" accept-charset="UTF-8"/></div>
-                <div class="form-group"><label>Mobile: </label><input name="CMobile" accept-charset="UTF-8" type="tel"/></div>
+              <?php
+              if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['Name'])){
+                echo "
+                <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                  <strong>Sucess !</strong> New user added successfully.
+                  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                  </button>
+                </div>
+                ";
+              }
+
+              ?>
+              <h4>Add a New Booking</h4>
+              <hr class="header-hr"/>
+              <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" id="newBooking" class="newEntry" style="padding: 2em 5em;">
+                <div class="form-group"><label>Name: </label><input name="Name" accept-charset="UTF-8" class="custom-input2" required/></div>
+                <div class="form-group"><label>FbName: </label><input name="FbName" accept-charset="UTF-8" class="custom-input2"/></div>
+                <div class="form-group"><label>Email: </label><input name="CEmail" accept-charset="UTF-8" class="custom-input2"/></div>
+                <div class="form-group"><label>Mobile: </label><input name="CMobile" accept-charset="UTF-8" type="tel" class="custom-input2"/></div>
                 <div class="form-group">
                   <label>Location: </label>
-                  <select name="CLocation">
+                  <select name="CLocation" class="custom-input2" required>
                     <option disabled selected value>-- select an option -- </option>
                     <option>Abu Dhabi</option>
                     <option>Ajman</option>
@@ -60,7 +74,7 @@
                 </div>
                 <div class="form-group">
                   <label>Currency: </label>
-                  <select name="Currency">
+                  <select name="Currency" class="custom-input2" required>
                     <option disabled selected value>-- select an option -- </option>
                     <option value='AED'>AED</option>
                     <option value='BHD'>BHD</option>
@@ -79,23 +93,23 @@
                 </div>
                 <div class="form-group">
                   <label>Payment Method: </label>
-                  <select name="PaymentMethod">
+                  <select name="PaymentMethod" class="custom-input2" required>
                     <option disabled selected value>-- select an option -- </option>
                     <option value="COD">COD</option>
                     <option value="Credit Card">Credit Card</option>
                     <option value="Handcash">Handcash</option>
                   </select>
                 </div>
-                <div class="form-group"><label>Sales Value: </label><input name="SalesValue" accept-charset="UTF-8"/></div>
+                <div class="form-group"><label>Sales Value: </label><input name="SalesValue" accept-charset="UTF-8" class="custom-input2" required/></div>
                 <div class="form-group">
                   <!-- <label>Salesman ID: </label><input name="SalesMan" hidden value="<?php //echo $_SESSION['id']; ?>"/>
                   <?php //echo $_SESSION['id']; ?> -->
                 </div>
-                <button type="submit" name="submit" class="btn submit-btn">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
               </form>
 
               <?php
-                  if($_SERVER['REQUEST_METHOD']=='POST'){
+                  if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['Name'])){
                     $Cname = trim($_POST['Name']);
                     $FbName = trim($_POST['FbName']);
                     $CEmail = trim($_POST['CEmail']);
@@ -122,7 +136,7 @@
 
                   // echo $SalesAED;
 
-
+                  $Bid = mysqli_query($db,"ALTER table booking AUTO_INCREMENT=100");
                   $_IdResult = mysqli_fetch_array(mysqli_query($db, "SELECT * FROM salesman WHERE SEmail = '$SEmail'"));
 
                   // var_dump($_IdResult);
@@ -167,3 +181,8 @@
     </div>
   </div>
 </div>
+
+<?php
+  include '../end.php';
+
+?>

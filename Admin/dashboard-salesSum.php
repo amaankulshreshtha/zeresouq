@@ -11,7 +11,7 @@
           <div id="options-wrapper">
             <div id="side-menu-container">
               <ul id="side-menu">
-                <li class="side-menu-item prompt active"><a href="#"><i class="fa fa-th-list" aria-hidden="true"></i></a></li>
+                <li class="side-menu-item prompt active"><a href="#"><i class="fa fa-database" aria-hidden="true"></i></a></li>
                 <li class="side-menu-item prompt"><a href="dashboard-salesman.php"><i class="fa fa-users" aria-hidden="true"></i></a></li>
                 <li class="side-menu-item prompt"><a href="settings.php"><i class="fa fa-cogs" aria-hidden="true"></i></a></li>
                 <!-- <a><li class="side-menu-item prompt">lorem ipsum</li></a> -->

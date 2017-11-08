@@ -48,6 +48,7 @@
  ?>
 
 <link rel="stylesheet" href="styles.css"/>
+<link href="hover-min.css" rel="stylesheet" media="all">
 
 <div class="container-fluid login-container">
   <div class="left-side">
@@ -70,9 +71,6 @@
             </div>
             <a href="#"><span>Forgot your password?</span></a>
             <button class="btn submit-btn" name="submit" type="submit">Next</button>
-            <div id="signUp-container">
-              <span id="sign-up">Sign Up for a new account</span>
-            </div>
           </form>
         </div>
       </div>
